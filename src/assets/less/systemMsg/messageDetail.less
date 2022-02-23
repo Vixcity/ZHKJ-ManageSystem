@@ -1,0 +1,30 @@
+@import '../common.less';
+#messageDetail{
+  .colCtn{
+    .text{
+      display: flex;
+      flex-direction: column;
+      height: auto;
+      .title_msg{
+        height: 40px;
+        line-height: 40px;
+        font-weight: bold;
+      }
+      .userCtn{
+        display: flex;
+        flex-wrap: wrap;
+        max-width: 800px;
+        .tag_page{
+          border: 1px solid @blue;
+          color: @blue;
+          height: 20px;
+          line-height: 20px;
+          margin: 4px;
+          padding: 0 1em;
+          border-radius: 4px;
+          background-color:rgba(26,149,255,0.15);
+        }
+      }
+    }
+  }
+}

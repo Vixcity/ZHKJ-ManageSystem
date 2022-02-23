@@ -1,0 +1,37 @@
+@import '../common.less';
+#messageSend{
+  .content.row_item{
+    display: flex;
+    .status_tag{
+      line-height: 24px;
+      height: 24px;
+      margin: 0 8px;
+      padding: 0 8px;
+      border: 1px solid @blue;
+      border-radius: 8px;
+      font-size: 12px;
+      color: @blue;
+      cursor: pointer;
+      &.active{
+        background-color: @blue;
+        color: #FFF;
+      }
+      &.warn{
+        border-color: @orange;
+        color: @orange;
+        &.active{
+          background-color: @orange;
+          color: #FFF;
+        }
+      }
+      &.error{
+        border-color: @red;
+        color: @red;
+        &.active{
+          background-color: @red;
+          color: #FFF;
+        }
+      }
+    }
+  }
+}

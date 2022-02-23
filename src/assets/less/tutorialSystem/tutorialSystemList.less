@@ -1,0 +1,57 @@
+@import '../common.less';
+#tutorialSystemList{
+  .inputCtn_page{
+    display: flex;
+    justify-content: center;
+    padding: 24px;
+    .searchInput{
+      width:40%;
+      height: 40px;
+      border-top-right-radius: 0;
+      border-bottom-right-radius: 0;
+    }
+    .btn{
+      height: 40px;
+      margin: 0;
+      border-top-left-radius:0; 
+      border-bottom-left-radius:0;
+      line-height: 40px;
+    }
+  }
+  .collapse_title{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    .btn{
+      font-size: @fontMiddle;
+    }
+  }
+  .collapse__inner_item{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 8px 0;
+    .text:hover{
+      color: @blue;
+      cursor: pointer;
+      transition: color 0.1s ease-in-out;
+    }
+    .btnCtn_collapse{
+      display: flex;
+      .handle_btn{
+        padding: 0 8px;
+        cursor: pointer;
+        &:nth-child(n+2){
+          margin-left: 16px;
+        }
+      }
+    }
+  }
+  .orange{
+    color: @orange;
+  }
+  .red{
+    color: @red;
+  }
+}
