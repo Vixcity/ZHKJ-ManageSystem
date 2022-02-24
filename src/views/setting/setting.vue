@@ -479,7 +479,6 @@
 
 <script>
 import { setting, categoryType } from '@/assets/js/api.js'
-import E from 'wangeditor'
 export default {
   data () {
     return {

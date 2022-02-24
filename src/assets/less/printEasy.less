@@ -1,0 +1,111 @@
+@import './common.less';
+@import './table.less';
+.printContainer{
+  color: #000;
+  .pmain{
+    page-break-after: always;
+    padding: 30px 50px;
+    height: auto;
+    min-height: 1490px;
+    width: 982px;
+    display: flex;
+    flex-direction: column;
+    font-size: 20px;
+    &.crosswise{
+      max-width: 1140px!important;
+      min-width: 1140px!important;
+      max-height: 620px!important;
+      min-height: 620px!important;
+      page-break-after: always;
+    }
+    .phead{
+      display: block;
+      .ptitle{
+        font-size: 31px;
+        line-height: 46px;
+      }
+      .prow{
+        display: flex;
+        line-height: 28px;
+        .pcol{
+          margin-right: 24px;
+          width: 300px;
+          display: flex;
+        }
+      }
+      .pImage{
+        width: 120px;
+        height: 120px;
+        display: flex;
+        align-items: center;
+        .el-image{
+          width: 100%;
+          height:  100%;
+        }
+      }
+      .fr{
+        display: flex;
+        align-items: center;
+        max-width: 320px;
+      }
+    }
+    .pbody{
+      .tableCtn{
+        padding: 0;
+        margin-top: 32px;
+        .thead{
+          border-color: #010101;
+        }
+        .tbody{
+          border-color: #010101; 
+          &.hasTop{
+            border-top: 1px solid #010101;
+          }
+        }
+        .trow{
+          border-color: #010101;
+          box-sizing: border-box;
+          .tcol{
+            border-color: #010101;
+          }
+        }
+      }
+    }
+    .bgWhite{
+      background: rgba(255,255,255,0.7);
+    }
+    .bgGray{
+      background: rgba(0,0,0,0.05);
+    }
+  }
+  .setting_sign_style{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 200px;
+    background-color: #FFF;
+    border: 1px solid #DDD;
+    box-sizing: border-box;
+    box-shadow: 4px 4px 4px #333;
+    display: flex;
+    flex-direction: column;
+    padding: 4px 0;
+    .setting_item{
+      width: 100%;
+      min-height: 32px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 16px;
+      box-sizing: border-box;
+      cursor: pointer;
+      &:hover{
+        background-color: #CCC;
+      }
+      &.checked::after{
+        content: '当前模式';
+        color: rgba(0,0,0,0.4);
+      }
+    }
+  }
+}

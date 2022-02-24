@@ -78,6 +78,10 @@ export default {
           ]
         },
         {
+          name: '生产流转码',
+          url: '/productFlowCode/productFlowCode'
+        },
+        {
           name: '数据统计',
           url: '/dataInfo/dataInfoDetail'
         },

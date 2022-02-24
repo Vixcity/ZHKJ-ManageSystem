@@ -3,6 +3,8 @@
 @red:#F5222D;
 @orange:#E6A23C;
 @green:#01B48C;
+@hoverGreen:#03D0A2;
+@black:#2E394F;
 @font85:rgba(0,0,0,0.85);
 @font65:rgba(0,0,0,0.65);
 @font45:rgba(0,0,0,0.45);
@@ -10,6 +12,16 @@
 @fontBig:16px;
 @fontMiddle:14px;
 @fontSmall:12px;
+@borderColor:#e9e9e9;
+.green{
+  color:@green;
+}
+.hoverGreen{
+  color:@green;
+  &:hover{
+    color: @hoverGreen;
+  }
+}
 .indexMain{
   width: 100%;
   .module{
@@ -892,6 +904,14 @@
         border-bottom: 1px solid #E9E9E9;
         max-height: 300px;
         overflow-y: auto;
+        .explainCtn {
+          padding: 12px;
+          background: #F0F2F5;
+          color: @font65;
+          font-size: @fontMiddle;
+          margin: 12px;
+          border-radius: 4px;
+        }
         .row{
           min-height: 32px;
           display: flex;

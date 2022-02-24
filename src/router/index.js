@@ -36,6 +36,16 @@ const routes = [
         component: () => import('../views/client/clientUpdate.vue'),
       },
       {
+        path: '/productFlowCode/productFlowCode',
+        name: '生产流转码',
+        component: () => import('../views/productFlowCode/productFlowCode.vue'),
+      },
+      {
+        path: '/productFlowCode/print',
+        name: '生产流转码打印',
+        component: () => import('../views/productFlowCode/print.vue'),
+      },
+      {
         path: '/tutorialSystem/tutorialSystemList',
         name: '教程列表',
         component: () => import('../views/tutorialSystem/tutorialSystemList.vue'),

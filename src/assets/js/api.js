@@ -38,7 +38,14 @@ const categoryType = {
   unitList: (params) => http.get(`${baseUrl}/product/unit/all`, params),
   settingUnit: (params) => http.post(`${baseUrl}/product/unit/save`, params, 'application/json'),
 }
+// 生产流转码
+const productFlowCode = {
+  list: (params) => http.get(`${baseUrl}/production/code/list`, params, 'application/json'),
+  statistics: (params) => http.get(`${baseUrl}/production/code/total`, params, 'application/json'),
+  save: (params) => http.post(`${baseUrl}/production/code/save`, params, 'application/json'),
+}
 export {
+  productFlowCode,
   categoryType,
   message,
   setting,

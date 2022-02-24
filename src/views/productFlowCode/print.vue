@@ -1,0 +1,85 @@
+<template>
+  <div class="printContainer"
+    id="productFlowCodePrint"
+    @click="showMenu = false"
+    @click.right="handleClickRight">
+    <div class="pmain" style="text-align: center;">
+      <div class="phead clearfix">
+        <div class="ptitle">{{ company_name + '工厂注册码' }}</div>
+      </div>
+      <div class="pbody">
+        <div class="tableCtn pageOne">
+          <div class="module">
+            <img :src="qrCodeUrl" width="1000px">
+          </div>
+          <div class="phead">
+              <div class="ptitle">织为云外协生产小程序</div>
+          </div>
+          <div class="phead">
+              <div class="ptitle">微信扫一扫，在线管理加工单进度</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="setting_sign_style"
+      v-if="showMenu"
+      :style="`left:${X_position || 0}px;top:${Y_position}px`"
+      @click.stop>
+      <div class="setting_item"
+        @click="windowMethod(1)">刷新</div>
+      <div class="setting_item"
+        @click="windowMethod(2)">打印</div>
+    </div>
+  </div>
+</template>
+
+<script lang="ts">
+import Vue from 'vue'
+export default Vue.extend({
+  data() {
+    return {
+      company_name: window.sessionStorage.getItem('company_name'),
+      qrCodeUrl: '',
+      showMenu: false,
+      X_position: 0,
+      Y_position: 0,
+    }
+  },
+  methods: {
+    handleClickRight(e, type = true) {
+      this.showMenu = type
+      this.X_position = e.clientX
+      this.Y_position = e.clientY
+      e.preventDefault()
+      e.stopPropagation()
+    },
+    windowMethod(type) {
+      this.showMenu = false
+      window.requestAnimationFrame(() => {
+        if (type === 1) {
+          window.location.reload()
+        } else if (type === 2) {
+          window.print()
+        }
+      })
+    }
+  },
+  mounted() {
+    let _this = this
+    let a = 'https://knit-m-beta.zwyknit.com/miniprogram?company_id=' + _this.$route.query.companyID
+
+    // 生成二维码
+    const QRCode = require('qrcode')
+    QRCode.toDataURL(a)
+    .then((url) => {
+        _this.qrCodeUrl = url
+    })
+    .catch((err) => {
+        console.error(err)
+    })
+  }
+})
+</script>
+<style lang="less" scoped>
+@import "~@/assets/less/productFlowCode/print.less";
+</style>
