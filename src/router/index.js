@@ -10,7 +10,13 @@ const routes = [
   }, {
     path: '/login',
     component: () => import('../views/login.vue')
-  }, {
+  }, 
+  {
+    path: '/productFlowCode/print',
+    name: '生产流转码打印',
+    component: () => import('../views/productFlowCode/print.vue'),
+  },
+  {
     path: '/index',
     name: 'index',
     component: () => import('../views/index.vue'),
@@ -39,11 +45,6 @@ const routes = [
         path: '/productFlowCode/productFlowCode',
         name: '生产流转码',
         component: () => import('../views/productFlowCode/productFlowCode.vue'),
-      },
-      {
-        path: '/productFlowCode/print',
-        name: '生产流转码打印',
-        component: () => import('../views/productFlowCode/print.vue'),
       },
       {
         path: '/tutorialSystem/tutorialSystemList',

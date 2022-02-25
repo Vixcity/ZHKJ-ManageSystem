@@ -222,8 +222,10 @@ export default {
           number: this.createNumber,
         })
         .then((res) => {
+            console.log(this.targetFactoryInfo)
           if (res.data.status !== false) {
-            this.$router.push('/productFlowCode/print?company_id=' + this.targetFactoryInfo.company_id + '&number=' + this.createNumber + '&id=' + res.data.data)
+            this.$openUrl('/productFlowCode/print?company_id=' + this.targetFactoryInfo.company_id + '&number=' + this.createNumber + '&id=' + res.data.data + '&company_name=' + this.targetFactoryInfo.company.company_name)
+            this.showPopup = false
             return;
           }
         });
