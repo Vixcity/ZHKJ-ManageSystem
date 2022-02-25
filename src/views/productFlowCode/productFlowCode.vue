@@ -222,10 +222,22 @@ export default {
           number: this.createNumber,
         })
         .then((res) => {
-            console.log(this.targetFactoryInfo)
+          console.log(this.targetFactoryInfo);
           if (res.data.status !== false) {
-            this.$openUrl('/productFlowCode/print?company_id=' + this.targetFactoryInfo.company_id + '&number=' + this.createNumber + '&id=' + res.data.data + '&company_name=' + this.targetFactoryInfo.company.company_name)
-            this.showPopup = false
+            this.$openUrl(
+              "/productFlowCode/print?company_id=" +
+                this.targetFactoryInfo.company_id +
+                "&number=" +
+                this.createNumber +
+                "&id=" +
+                res.data.data +
+                "&company_name=" +
+                this.targetFactoryInfo.company.company_name +
+                "&create_number=" +
+                this.targetFactoryInfo.number
+            );
+            this.showPopup = false;
+            this.changeScreen()
             return;
           }
         });

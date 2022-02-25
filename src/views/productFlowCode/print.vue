@@ -12,13 +12,13 @@
       v-for="(item, index) in printList"
       :key="index"
     >
-      <div class="pbody" style="margin-left:20px">
+      <div class="pbody" style="margin-top:80px">
         <div class="pageOne">
           <div class="module">
-            <img :src="item.url" width="150px" />
+            <img :src="item.url" width="200px" />
           </div>
-          <div style="font-size: 20px">scode:{{ item.scode }}</div>
-          <div style="font-size: 20px">{{ item.company_name }}</div>
+          <div>scode:{{ item.scode }}</div>
+          <div>{{ item.company_name }}</div>
         </div>
       </div>
     </div>
@@ -78,15 +78,21 @@ export default Vue.extend({
       let a =
         "https://knit-m-beta.zwyknit.com/bindOrder?company_id=" +
         this.routerQuery.company_id +
-        "&hash=LZ" +
-        this.routerQuery.id +
-        i;
+        "&hash=" +
+        this.routerQuery.company_name+
+        new Date().getFullYear() +
+        (+this.routerQuery.create_number + i + 1) +
+        "&id=" +
+        this.routerQuery.id;
 
       // 生成二维码
       QRCode.toDataURL(a)
         .then((url) => {
           _this.printList.push({
-            scode: "LZ" + _this.routerQuery.id + i,
+            scode:
+              new Date().getFullYear() +
+              "" +
+              (+this.routerQuery.create_number + i + 1),
             company_name: _this.routerQuery.company_name,
             company_id: _this.routerQuery.company_id,
             url,
