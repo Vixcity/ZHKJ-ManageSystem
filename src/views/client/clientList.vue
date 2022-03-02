@@ -105,7 +105,7 @@ export default {
         if (res.data.status !== false) {
           this.list = res.data.data.map(item => {
             let systemTypeArr = systemType
-            item.type_name = systemTypeArr.find(itemF => itemF.id === Number(item.type))?.name || item.type
+            item.type_name = systemTypeArr.find(itemF => itemF.id === Number(item.type)).name || item.type
             item.status_name = item.status === 1 ? '使用中' : '已失效'
             return item
           })
