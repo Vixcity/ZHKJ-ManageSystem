@@ -55,17 +55,16 @@
                 <!-- <el-checkbox class="checkbox"
                   @click.stop="()=>false"></el-checkbox> -->
                 <div class="row_inner_line">
-                  <span class="title"> {{item.title}} </span>
-                  <span class="info right">{{$getTime(item.created_at)}}</span>
+                  <span class="info right">{{$getTime(item.update_time)}}</span>
                 </div>
                 <div class="row_inner_line">
                   <span class="info">{{item.content|filterContent}}</span>
-                  <span class="info right">{{item.user_name}}</span>
+                  <!-- <span class="info right">{{item.user_name}}</span> -->
                 </div>
               </div>
               <div class="message_inner_content"
                 v-html="item.content"></div>
-              <div class="message_inner_notify_users"
+              <!-- <div class="message_inner_notify_users"
                 v-for="(itemCom,indexCom) in item.receive_user"
                 :key="indexCom">
                 <div class="company_name">{{itemCom.company_name}}</div>
@@ -76,7 +75,7 @@
                     {{itemU.user_name}}
                   </span>
                 </div>
-              </div>
+              </div> -->
             </el-collapse-item>
           </el-collapse>
           <div class="row_line tip"
@@ -137,9 +136,9 @@ export default {
         start_time: this.date ? this.date[0] : '',
         end_time: this.date ? this.date[1] : ''
       }).then(res => {
-        res.data.data.forEach(item => {
-          item.receive_user = this.$mergeData(item.receive_user, { mainRule: 'company_name', childrenName: 'user_list' })
-        })
+        // res.data.data.forEach(item => {
+        //   item.receive_user = this.$mergeData(item.receive_user, { mainRule: 'company_name', childrenName: 'user_list' })
+        // })
         this.messageList.push(...res.data.data)
         this.total = res.data.meta
       })

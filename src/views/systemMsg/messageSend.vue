@@ -6,14 +6,12 @@
         <span class="title">发布通知</span>
       </div>
       <div class="editCtn">
-        <div class="rowCtn">
+        <!-- <div class="rowCtn">
           <div class="colCtn flex3">
             <span class="label">
               <span class="text">通知级别</span>
             </span>
             <span class="content row_item">
-              <!-- <el-input placeholder="请输入标题"
-                v-model="messageTitle"></el-input> -->
               <div class="status_tag"
                 :class="{'active':message_type === '普通'}"
                 @click="message_type='普通'">普通</div>
@@ -36,25 +34,37 @@
                 v-model="messageTitle"></el-input>
             </span>
           </div>
-        </div>
+        </div> -->
         <div class="rowCtn">
           <div class="colCtn">
+            <span class="label">
+              <span class="text">公告内容</span>
+            </span>
             <div class="editMessageContent"
               ref="editMessageContent"></div>
           </div>
         </div>
         <div class="rowCtn">
           <div class="colCtn flex3">
-            <span class="label">通知对象</span>
+            <span class="label">系统类型</span>
             <span class="content">
-              <el-cascader v-model="sendMsgUser"
+              <!-- <el-cascader :disabled="message_type==='系统通知'"
+                v-model="sendMsgUser"
                 :options="userArr"
                 placeholder="请选择通知对象"
                 :props="{multiple:true}"
                 collapse-tags
                 filterable
                 :show-all-levels='false'
-                clearable></el-cascader>
+                clearable></el-cascader> -->
+              <el-select v-model="system_type"
+                placeholder="请选择系统类型">
+                <el-option v-for="item in systemTypeArr"
+                  :key="item.id"
+                  :label="item.name"
+                  :value="item.id">
+                </el-option>
+              </el-select>
             </span>
           </div>
         </div>
@@ -96,26 +106,34 @@ export default {
         pages: 1,
         total: 1
       },
-      wangeditor: null
+      wangeditor: null,
+      system_type: '',
+      systemTypeArr: systemType
     };
   },
   methods: {
     sendMessageToUsers () {
-      let sendUsersData = this.sendMsgUser.map(item => item[1])
+      // let sendUsersData = this.sendMsgUser.map(item => item[1])
+      if (!this.system_type) {
+        this.$message.error('请选择系统类型')
+        return
+      }
       let data = {
-        title: this.messageTitle,
-        type: this.message_type,
+        // title: this.messageTitle,
+        // type: this.message_type,
         // router_url: null,
         content: this.wangeditor.txt.html(),
-        tag: '版本更新公告',
-        receive_company: sendUsersData,
-        // is_system: 1
+        // tag: '版本更新公告',
+        // receive_company: sendUsersData,
+        // is_system: 1,
+        update_time: this.$getTime(new Date()),
+        system_type: this.system_type
       }
       message.create({
         ...data
       }).then(res => {
         if (res.data.status !== false) {
-          this.$message.success('发送成功')
+          this.$message.success('发布成功')
         }
       })
     }
