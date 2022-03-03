@@ -76,7 +76,7 @@ export default Vue.extend({
 
     for (let i = 0; i < this.routerQuery.number; i++) {
       let a =
-        "https://knit-m-beta.zwyknit.com/bindOrder?company_id=" +
+        "https://knit-m-api.zwyknit.com/bindOrder?company_id=" +
         this.routerQuery.company_id +
         "&hash=" +
         this.routerQuery.company_name+
