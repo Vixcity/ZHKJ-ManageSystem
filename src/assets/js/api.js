@@ -27,9 +27,9 @@ const setting = {
   }
 }
 const message = {
-  create: (params) => http.post(`${baseUrl}/notify/save`, params, 'application/json'),
-  list: (params) => http.get(`${baseUrl}/admin/notify/list`, params),
-  detail: (params) => http.get(`${baseUrl}/admin/notify/detail`, params)
+  create: (params) => http.post(`${baseUrl}/system/update/log/save`, params, 'application/json'),
+  list: (params) => http.get(`${baseUrl}/system/update/log/lists`, params),
+  detail: (params) => http.get(`${baseUrl}/system/update/log/detail`, params)
 }
 const categoryType = {
   list: (params) => http.get(`${baseUrl}/admin/category/all`, params),

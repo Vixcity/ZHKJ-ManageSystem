@@ -17,4 +17,7 @@ export const systemType = [{
 {
   id: 5,
   name: '纱线系统'
+}, {
+  id: 6,
+  name: '新版小商品系统'
 }]
