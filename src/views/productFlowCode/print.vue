@@ -7,15 +7,15 @@
     v-loading="loading"
   >
     <div
-      class="pmain"
+      :class="printType === 1 ? 'w55 pmain' : 'w37 pmain'"
       style="text-align: center"
       v-for="(item, index) in printList"
       :key="index"
     >
-      <div class="pbody" style="margin-top:80px">
+      <div class="pbody">
         <div class="pageOne">
           <div class="module">
-            <img :src="item.url" width="200px" />
+            <img :src="item.url" width="150px" />
           </div>
           <div>scode:{{ item.scode }}</div>
           <div>{{ item.company_name }}</div>
@@ -29,7 +29,8 @@
       @click.stop
     >
       <div class="setting_item" @click="windowMethod(1)">刷新</div>
-      <div class="setting_item" @click="windowMethod(2)">打印</div>
+      <div class="setting_item" @click="windowMethod(3)">贴纸打印</div>
+      <div class="setting_item" @click="windowMethod(4)">布条打印</div>
     </div>
   </div>
 </template>
@@ -42,6 +43,7 @@ export default Vue.extend({
       company_name: window.sessionStorage.getItem("company_name"),
       qrCodeUrl: "",
       showMenu: false,
+      printType: 1,
       X_position: 0,
       Y_position: 0,
       routerQuery: {},
@@ -62,8 +64,16 @@ export default Vue.extend({
       window.requestAnimationFrame(() => {
         if (type === 1) {
           window.location.reload();
-        } else if (type === 2) {
-          window.print();
+        } else if (type === 3) {
+          this.printType = 1;
+          setTimeout(res => {
+            window.print();
+          },500);
+        } else if (type === 4) {
+          this.printType = 2;
+          setTimeout(res => {
+            window.print();
+          },500);
         }
       });
     },
@@ -79,7 +89,7 @@ export default Vue.extend({
         "https://knit-m-api.zwyknit.com/bindOrder?company_id=" +
         this.routerQuery.company_id +
         "&hash=" +
-        this.routerQuery.company_name+
+        this.routerQuery.company_name +
         new Date().getFullYear() +
         (+this.routerQuery.create_number + i + 1) +
         "&id=" +
