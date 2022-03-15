@@ -93,14 +93,22 @@
                   style="display: flex; align-items: center"
                 >
                   <span class="label" style="width: 20%">目标工厂</span>
-                  <el-autocomplete
+                  <el-select
                     v-model="searchUser"
-                    style="width: 60%"
-                    :fetch-suggestions="querySearchAsync"
+                    filterable
                     placeholder="搜索客户目标"
-                    @select="confirmUserTarget"
-                    class="elInput hasMarginRight"
-                  ></el-autocomplete>
+                    style="width: 60%"
+                    @change="confirmUserTarget"
+                    value-key="company_uuid"
+                  >
+                    <el-option
+                      v-for="item in selectCompanyList"
+                      :key="item.company_uuid"
+                      :label="item.company_name"
+                      :value="item"
+                    >
+                    </el-option>
+                  </el-select>
                 </div>
                 <div
                   class="info inputCtn"
@@ -158,6 +166,7 @@ export default {
       createNumber: "",
       searchUser: "",
       productFlowCodeList: [],
+      selectCompanyList: [],
       total: 1,
       page: 1,
       targetFactoryList: [],
@@ -178,22 +187,6 @@ export default {
     },
   },
   methods: {
-    // 异步请求数据
-    querySearchAsync(queryString, cb) {
-      company
-        .list({
-          keyword: queryString,
-        })
-        .then((res) => {
-          if (res.data.status !== false) {
-            res.data.data.forEach((item) => {
-              item.value = item.company_name;
-            });
-            cb(res.data.data);
-          }
-        });
-    },
-
     // 选中工厂
     confirmUserTarget(item) {
       productFlowCode
@@ -237,7 +230,7 @@ export default {
                 this.targetFactoryInfo.number
             );
             this.showPopup = false;
-            this.changeScreen()
+            this.changeScreen();
             return;
           }
         });
@@ -268,7 +261,7 @@ export default {
             res.data.data.data.forEach((item) => {
               item.user_name = item.admin_user.user_name;
               item.created_at = this.rTime(item.created_at);
-              item.company_name = item.company.company_name;
+              item.company_name = item.company?.company_name;
               arr.push(item);
             });
             this.productFlowCodeList = arr;
@@ -280,6 +273,17 @@ export default {
   },
   created() {
     this.pName = "生产流转码列表";
+  },
+  mounted() {
+    company
+      .list({
+        keyword: "",
+      })
+      .then((res) => {
+        if (res.data.status !== false) {
+          this.selectCompanyList = res.data.data;
+        }
+      });
   },
 };
 </script>
