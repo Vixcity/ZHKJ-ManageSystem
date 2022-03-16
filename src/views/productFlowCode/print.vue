@@ -15,9 +15,9 @@
       <div class="pbody">
         <div class="pageOne">
           <div class="module">
-            <img :src="item.url" width="150px" />
+            <img :src="item.url" width="150px" style="transform: translateX(-10px);"/>
           </div>
-          <div>scode:{{ item.scode }}</div>
+          <div>{{ item.scode }}</div>
           <div>{{ item.company_name }}</div>
         </div>
       </div>
