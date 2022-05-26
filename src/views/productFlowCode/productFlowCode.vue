@@ -1,5 +1,5 @@
 <template>
-  <div id="productFlowCode" class="indexMain" v-loading="loading">
+  <div id="productFlowCode" class="indexMain" v-loading="loading" style="padding-left: 10px;">
     <div class="module">
       <div class="titleCtn">
         <div class="title">生产流转码管理</div>
