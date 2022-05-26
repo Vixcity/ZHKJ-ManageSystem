@@ -2,6 +2,7 @@
   <div
     class="printContainer"
     id="productFlowCodePrint"
+    style="padding-left: 10px;"
     @click="showMenu = false"
     @click.right="handleClickRight"
     v-loading="loading"
